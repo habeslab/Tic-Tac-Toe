@@ -78,8 +78,8 @@ all: main-build
 main-build: Tic-Tac-Toe.elf secondary-outputs
 
 # Tool invocations
-Tic-Tac-Toe.elf Tic-Tac-Toe.map: $(OBJS) $(USER_OBJS) C:\Users\umber\Progetti\Tic-Tac-Toe-STM32\Tic-Tac-Toe\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Tic-Tac-Toe.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\umber\Progetti\Tic-Tac-Toe-STM32\Tic-Tac-Toe\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Tic-Tac-Toe.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Tic-Tac-Toe.elf Tic-Tac-Toe.map: $(OBJS) $(USER_OBJS) C:\Users\umber\Progetti\Tic-Tac-Toe\Tic-Tac-Toe\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Tic-Tac-Toe.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\umber\Progetti\Tic-Tac-Toe\Tic-Tac-Toe\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Tic-Tac-Toe.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

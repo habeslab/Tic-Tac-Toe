@@ -1,5 +1,7 @@
 # Tic-Tac-Toe Game with AI (STM32)
 
+![Tic-Tac-Toe Logo](./docs/tic-tac-toe.png)
+
 This project implements a **Tic-Tac-Toe game** using an STM32 microcontroller, featuring both **human-player** and **AI player** modes. The game operates via UART communication, allowing users to input their moves through a serial terminal. The AI player makes decisions based on a predefined strategy.
 
 ---
@@ -66,6 +68,7 @@ This project is a simple implementation of the **Tic-Tac-Toe** game, where a use
 2. **Compile the Code**:
    - Open the provided code in STM32CubeIDE.
    - Make sure the UART peripheral is properly configured in the STM32CubeMX interface.
+   - Include Libraries like "aifes.h" direct downloaded from the original repository <https://github.com/Fraunhofer-IMS/AIfES_for_Arduino/archive/refs/heads/main.zip>
    - Build the project.
 
 3. **Flash the STM32**:
@@ -75,10 +78,19 @@ This project is a simple implementation of the **Tic-Tac-Toe** game, where a use
    - Open a serial terminal (e.g., PuTTY, Tera Term).
    - Set the baud rate (e.g., 9600), data bits (8), parity (None), stop bits (1), and flow control (None).
    - Connect to the appropriate COM port.
+   - You can use **tic_tac_toe.py** as interface for our game (best choice)
 
 ---
 
 ## How to Play
+
+0. **Connect the board / follow the previous step**:
+   - Use command :
+
+   ```python
+      python tic_tac_toe.py
+   ```
+
 
 1. **Start the Game**:
    - Upon starting the game, the board will be printed to the serial terminal, and the AI will make its first move.
@@ -135,7 +147,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Example of Terminal Interaction
 
-```
+```sh
 ############ New Game ############
 
 Current Board:
@@ -167,5 +179,4 @@ Current Board:
   -----------
   c1 | c2 | c3
 
-...
 ```
