@@ -1,0 +1,6 @@
+../Core/aifes/aifes_config.c:36:5:aifes_log_e	16	static
+../Core/aifes/aifes_config.c:42:5:aifes_print	16	static
+../Core/aifes/aifes_config.c:47:5:aifes_print_int	16	static
+../Core/aifes/aifes_config.c:52:5:aifes_print_uint	16	static
+../Core/aifes/aifes_config.c:57:5:aifes_print_long_int	16	static
+../Core/aifes/aifes_config.c:62:5:aifes_print_float	16	static

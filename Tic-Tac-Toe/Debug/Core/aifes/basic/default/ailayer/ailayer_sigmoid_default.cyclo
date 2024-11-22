@@ -1,0 +1,5 @@
+../Core/aifes/basic/default/ailayer/ailayer_sigmoid_default.c:24:12:ailayer_sigmoid_f32_default	1
+../Core/aifes/basic/default/ailayer/ailayer_sigmoid_default.c:42:12:ailayer_sigmoid_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_sigmoid_default.c:60:12:ailayer_sigmoid_q7_default	1
+../Core/aifes/basic/default/ailayer/ailayer_sigmoid_default.c:84:6:ailayer_sigmoid_calc_result_tensor_params_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_sigmoid_default.c:93:6:ailayer_sigmoid_calc_result_tensor_params_q7_default	1

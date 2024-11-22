@@ -1,0 +1,8 @@
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:25:12:ailayer_batch_norm_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:49:12:ailayer_batch_norm_cfirst_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:55:12:ailayer_batch_norm_chw_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:61:12:ailayer_batch_norm_cl_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:67:12:ailayer_batch_norm_clast_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:73:12:ailayer_batch_norm_hwc_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:79:12:ailayer_batch_norm_lc_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_batch_normalization_default.c:85:6:ailayer_batch_norm_init_params_f32_default	1

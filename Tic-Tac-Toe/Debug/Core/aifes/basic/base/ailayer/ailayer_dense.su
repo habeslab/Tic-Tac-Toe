@@ -1,0 +1,10 @@
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:41:12:ailayer_dense	16	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:95:6:ailayer_dense_forward	48	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:110:6:ailayer_dense_backward	64	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:151:6:ailayer_dense_calc_result_shape	24	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:161:10:ailayer_dense_sizeof_bwdmem	32	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:177:10:ailayer_dense_sizeof_paramem	32	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:195:6:ailayer_dense_set_paramem	24	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:221:10:ailayer_dense_sizeof_trainmem	24	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:240:6:ailayer_dense_set_trainmem	24	static
+../Core/aifes/basic/base/ailayer/ailayer_dense.c:279:6:ailayer_dense_print_specs	24	static

@@ -1,0 +1,6 @@
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:29:12:ailayer_conv2d_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:48:12:ailayer_conv2d_cfirst_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:54:12:ailayer_conv2d_chw_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:60:12:ailayer_conv2d_clast_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:66:12:ailayer_conv2d_hwc_f32_default	1
+../Core/aifes/cnn/default/ailayer/ailayer_conv2d_default.c:72:6:ailayer_conv2d_init_params_f32_default	5

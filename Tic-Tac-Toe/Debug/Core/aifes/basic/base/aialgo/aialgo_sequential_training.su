@@ -1,0 +1,12 @@
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:35:10:aialgo_sizeof_training_memory	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:102:9:aialgo_schedule_training_memory	40	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:191:6:aialgo_init_model_for_training	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:214:6:aialgo_backward_model	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:239:9:aialgo_train_model	144	dynamic
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:307:9:aialgo_calc_loss_model_f32	144	dynamic
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:366:9:aialgo_calc_loss_model_q31	152	dynamic
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:426:6:aialgo_zero_gradients_model	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:443:6:aialgo_update_params_model	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:476:6:aialgo_print_loss_specs	16	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:496:6:aialgo_print_optimizer_specs	16	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_training.c:507:6:aialgo_initialize_parameters_model	24	static

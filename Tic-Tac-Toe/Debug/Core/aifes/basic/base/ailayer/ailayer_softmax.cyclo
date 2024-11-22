@@ -1,0 +1,4 @@
+../Core/aifes/basic/base/ailayer/ailayer_softmax.c:40:12:ailayer_softmax	1
+../Core/aifes/basic/base/ailayer/ailayer_softmax.c:74:6:ailayer_softmax_forward	1
+../Core/aifes/basic/base/ailayer/ailayer_softmax.c:84:6:ailayer_softmax_calc_result_shape	1
+../Core/aifes/basic/base/ailayer/ailayer_softmax.c:91:6:ailayer_softmax_print_specs	1

@@ -1,0 +1,5 @@
+../Core/aifes/basic/base/ailoss/ailoss_crossentropy.c:47:11:ailoss_crossentropy	3
+../Core/aifes/basic/base/ailoss/ailoss_crossentropy.c:75:6:ailoss_crossentropy_calc_delta	2
+../Core/aifes/basic/base/ailoss/ailoss_crossentropy.c:95:6:ailoss_crossentropy_calc_loss	1
+../Core/aifes/basic/base/ailoss/ailoss_crossentropy.c:107:6:ailoss_crossentropy_dummy_backward	1
+../Core/aifes/basic/base/ailoss/ailoss_crossentropy.c:114:6:ailoss_crossentropy_print_specs	1

@@ -1,0 +1,5 @@
+../Core/aifes/cnn/base/ailayer/ailayer_reshape.c:45:12:ailayer_reshape	1
+../Core/aifes/cnn/base/ailayer/ailayer_reshape.c:82:6:ailayer_reshape_forward	2
+../Core/aifes/cnn/base/ailayer/ailayer_reshape.c:97:6:ailayer_reshape_backward	2
+../Core/aifes/cnn/base/ailayer/ailayer_reshape.c:111:6:ailayer_reshape_calc_result_shape	5
+../Core/aifes/cnn/base/ailayer/ailayer_reshape.c:142:6:ailayer_reshape_print_specs	2

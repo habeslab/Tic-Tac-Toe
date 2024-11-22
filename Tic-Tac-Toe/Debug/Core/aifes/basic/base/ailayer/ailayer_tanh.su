@@ -1,0 +1,5 @@
+../Core/aifes/basic/base/ailayer/ailayer_tanh.c:43:12:ailayer_tanh	16	static
+../Core/aifes/basic/base/ailayer/ailayer_tanh.c:80:6:ailayer_tanh_forward	32	static
+../Core/aifes/basic/base/ailayer/ailayer_tanh.c:91:6:ailayer_tanh_backward	112	dynamic
+../Core/aifes/basic/base/ailayer/ailayer_tanh.c:116:6:ailayer_tanh_calc_result_shape	16	static
+../Core/aifes/basic/base/ailayer/ailayer_tanh.c:123:6:ailayer_tanh_print_specs	16	static

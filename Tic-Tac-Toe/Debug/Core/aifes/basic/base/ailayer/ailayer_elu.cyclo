@@ -1,0 +1,5 @@
+../Core/aifes/basic/base/ailayer/ailayer_elu.c:40:12:ailayer_elu	1
+../Core/aifes/basic/base/ailayer/ailayer_elu.c:77:6:ailayer_elu_forward	1
+../Core/aifes/basic/base/ailayer/ailayer_elu.c:88:6:ailayer_elu_backward	1
+../Core/aifes/basic/base/ailayer/ailayer_elu.c:101:6:ailayer_elu_calc_result_shape	1
+../Core/aifes/basic/base/ailayer/ailayer_elu.c:112:6:ailayer_elu_print_specs	1

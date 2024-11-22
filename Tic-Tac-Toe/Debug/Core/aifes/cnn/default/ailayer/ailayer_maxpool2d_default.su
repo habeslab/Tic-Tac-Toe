@@ -1,0 +1,5 @@
+../Core/aifes/cnn/default/ailayer/ailayer_maxpool2d_default.c:24:12:ailayer_maxpool2d_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_maxpool2d_default.c:37:12:ailayer_maxpool2d_cfirst_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_maxpool2d_default.c:43:12:ailayer_maxpool2d_chw_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_maxpool2d_default.c:49:12:ailayer_maxpool2d_clast_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_maxpool2d_default.c:55:12:ailayer_maxpool2d_hwc_f32_default	16	static

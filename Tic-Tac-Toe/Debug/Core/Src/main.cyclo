@@ -1,0 +1,8 @@
+../Core/Src/main.c:70:6:Serial_Print	1
+../Core/Src/main.c:76:9:Serial_ReadChar	1
+../Core/Src/main.c:83:6:print_tictactoe_board	5
+../Core/Src/main.c:110:8:winner	23
+../Core/Src/main.c:168:6:tictactoe_game	10
+../Core/Src/main.c:261:5:main	1
+../Core/Src/main.c:307:6:SystemClock_Config	3
+../Core/Src/main.c:357:6:Error_Handler	1

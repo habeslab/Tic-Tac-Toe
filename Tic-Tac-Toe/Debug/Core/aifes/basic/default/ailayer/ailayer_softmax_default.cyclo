@@ -1,0 +1,5 @@
+../Core/aifes/basic/default/ailayer/ailayer_softmax_default.c:24:12:ailayer_softmax_f32_default	1
+../Core/aifes/basic/default/ailayer/ailayer_softmax_default.c:38:12:ailayer_softmax_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_softmax_default.c:52:12:ailayer_softmax_q7_default	1
+../Core/aifes/basic/default/ailayer/ailayer_softmax_default.c:66:6:ailayer_softmax_calc_result_tensor_params_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_softmax_default.c:75:6:ailayer_softmax_calc_result_tensor_params_q7_default	1

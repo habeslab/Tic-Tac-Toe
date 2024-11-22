@@ -1,0 +1,2 @@
+../Core/aifes/basic/base/aimath/aimath_f32.c:52:6:aimath_f32_print_aitensor	184	static
+../Core/aifes/basic/base/aimath/aimath_f32.c:107:6:aimath_f32_print_aiscalar	16	static

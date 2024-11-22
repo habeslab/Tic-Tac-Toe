@@ -1,0 +1,6 @@
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:25:11:ailoss_mse_f32_default	1
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:30:11:ailoss_mse_sum_f32_default	1
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:40:11:ailoss_mse_mean_f32_default	1
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:50:11:ailoss_mse_q31_default	1
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:55:11:ailoss_mse_sum_q31_default	1
+../Core/aifes/basic/default/ailoss/ailoss_mse_default.c:65:11:ailoss_mse_mean_q31_default	1

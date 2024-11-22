@@ -1,0 +1,16 @@
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:30:10:aialgo_sizeof_inference_memory	40	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:75:10:aialgo_sizeof_parameter_memory	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:114:6:aialgo_distribute_parameter_memory	40	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:160:9:aialgo_schedule_inference_memory	48	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:218:13:aialgo_forward_model	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:237:9:aialgo_inference_model	104	dynamic
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:295:9:aialgo_compile_model	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:314:6:aialgo_quantize_model_f32_to_q7	128	dynamic
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:412:6:aialgo_set_model_result_precision_q31	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:432:6:aialgo_set_model_delta_precision_q31	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:454:6:aialgo_set_model_gradient_precision_q31	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:483:6:aialgo_print_model_structure	24	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:507:6:aialgo_set_layer_settings_model	32	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:520:6:aialgo_set_training_mode_model	16	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:525:6:aialgo_set_batch_mode_model	16	static
+../Core/aifes/basic/base/aialgo/aialgo_sequential_inference.c:530:6:aialgo_set_trainable_model	16	static

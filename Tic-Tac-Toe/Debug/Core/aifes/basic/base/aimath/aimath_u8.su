@@ -1,0 +1,2 @@
+../Core/aifes/basic/base/aimath/aimath_u8.c:54:6:aimath_u8_print_aitensor	184	static
+../Core/aifes/basic/base/aimath/aimath_u8.c:106:6:aimath_u8_print_aiscalar	16	static

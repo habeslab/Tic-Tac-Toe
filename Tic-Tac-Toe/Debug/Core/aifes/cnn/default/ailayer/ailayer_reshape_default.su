@@ -1,0 +1,6 @@
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:24:12:ailayer_reshape_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:37:12:ailayer_reshape_q31_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:50:12:ailayer_reshape_q7_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:63:12:ailayer_flatten_f32_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:80:12:ailayer_flatten_q31_default	16	static
+../Core/aifes/cnn/default/ailayer/ailayer_reshape_default.c:97:12:ailayer_flatten_q7_default	16	static

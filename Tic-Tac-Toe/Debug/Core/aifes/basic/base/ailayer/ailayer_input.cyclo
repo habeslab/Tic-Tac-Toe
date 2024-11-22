@@ -1,0 +1,5 @@
+../Core/aifes/basic/base/ailayer/ailayer_input.c:42:12:ailayer_input	1
+../Core/aifes/basic/base/ailayer/ailayer_input.c:74:6:ailayer_input_forward	1
+../Core/aifes/basic/base/ailayer/ailayer_input.c:79:6:ailayer_input_backward	1
+../Core/aifes/basic/base/ailayer/ailayer_input.c:84:6:ailayer_input_calc_result_shape	1
+../Core/aifes/basic/base/ailayer/ailayer_input.c:101:6:ailayer_input_print_specs	2

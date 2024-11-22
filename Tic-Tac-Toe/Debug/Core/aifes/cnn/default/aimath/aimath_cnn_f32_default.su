@@ -1,0 +1,11 @@
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:35:6:aimath_f32_default_conv2d_add	144	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:208:6:aimath_f32_default_conv_transpose2d_add	144	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:385:6:aimath_f32_default_conv2d_fwd	112	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:491:6:aimath_f32_default_conv2d_bwd	104	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:567:6:aimath_f32_default_conv2d_bwd_full	112	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:648:6:aimath_f32_default_conv_transpose2d_fwd	112	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:734:6:aimath_f32_default_maxpool2d_fwd	136	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:874:6:aimath_f32_default_maxpool2d_bwd	112	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:980:6:aimath_f32_default_batch_norm	64	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:1015:6:aimath_f32_default_d_batch_norm	80	static
+../Core/aifes/cnn/default/aimath/aimath_cnn_f32_default.c:1110:6:aimath_f32_default_pad_zeros	80	static

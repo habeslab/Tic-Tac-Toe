@@ -1,0 +1,6 @@
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:43:12:ailayer_sigmoid	1
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:80:6:ailayer_sigmoid_forward	1
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:91:6:ailayer_sigmoid_backward	2
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:117:6:ailayer_sigmoid_calc_result_shape	1
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:123:10:ailayer_sigmoid_sizeof_bwdmem	3
+../Core/aifes/basic/base/ailayer/ailayer_sigmoid.c:137:6:ailayer_sigmoid_print_specs	1

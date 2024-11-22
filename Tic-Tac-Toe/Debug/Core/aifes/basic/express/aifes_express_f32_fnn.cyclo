@@ -1,0 +1,3 @@
+../Core/aifes/basic/express/aifes_express_f32_fnn.c:49:10:AIFES_E_flat_weights_number_fnn_f32	2
+../Core/aifes/basic/express/aifes_express_f32_fnn.c:64:8:AIFES_E_inference_fnn_f32	36
+../Core/aifes/basic/express/aifes_express_f32_fnn.c:303:8:AIFES_E_training_fnn_f32	65

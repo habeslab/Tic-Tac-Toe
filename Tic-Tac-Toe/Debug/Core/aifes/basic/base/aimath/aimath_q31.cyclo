@@ -1,0 +1,4 @@
+../Core/aifes/basic/base/aimath/aimath_q31.c:67:6:aimath_q31_print_aitensor	11
+../Core/aifes/basic/base/aimath/aimath_q31.c:138:6:aimath_q31_print_aiscalar	1
+../Core/aifes/basic/base/aimath/aimath_q31.c:151:6:aimath_q31_calc_q_params_from_f32	3
+../Core/aifes/basic/base/aimath/aimath_q31.c:176:6:aimath_q31_quantize_tensor_from_f32	3

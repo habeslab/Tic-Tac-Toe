@@ -1,0 +1,3 @@
+../Core/aifes/basic/default/ailayer/ailayer_input_default.c:24:12:ailayer_input_f32_default	1
+../Core/aifes/basic/default/ailayer/ailayer_input_default.c:35:12:ailayer_input_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_input_default.c:46:12:ailayer_input_q7_default	1

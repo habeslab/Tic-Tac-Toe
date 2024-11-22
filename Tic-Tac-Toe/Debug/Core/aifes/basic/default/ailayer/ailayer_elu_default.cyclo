@@ -1,0 +1,5 @@
+../Core/aifes/basic/default/ailayer/ailayer_elu_default.c:24:12:ailayer_elu_f32_default	1
+../Core/aifes/basic/default/ailayer/ailayer_elu_default.c:45:12:ailayer_elu_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_elu_default.c:66:12:ailayer_elu_q7_default	1
+../Core/aifes/basic/default/ailayer/ailayer_elu_default.c:94:6:ailayer_elu_calc_result_tensor_params_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_elu_default.c:103:6:ailayer_elu_calc_result_tensor_params_q7_default	1

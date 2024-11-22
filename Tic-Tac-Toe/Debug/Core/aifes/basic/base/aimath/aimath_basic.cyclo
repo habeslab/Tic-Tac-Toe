@@ -1,0 +1,8 @@
+../Core/aifes/basic/base/aimath/aimath_basic.c:24:6:print_aitensor	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:30:6:print_aiscalar	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:36:6:aimath_transpose_vector	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:45:10:aimath_tensor_elements	2
+../Core/aifes/basic/base/aimath/aimath_basic.c:57:10:aimath_sizeof_dtype	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:62:10:aimath_sizeof_tensor_data	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:67:10:aimath_sizeof_tensor_params	1
+../Core/aifes/basic/base/aimath/aimath_basic.c:72:10:aimath_sizeof_tensor	1

@@ -1,0 +1,2 @@
+../Core/aifes/basic/default/aiopti/aiopti_sgd_default.c:24:11:aiopti_sgd_f32_default	24	static
+../Core/aifes/basic/default/aiopti/aiopti_sgd_default.c:57:11:aiopti_sgd_q31_default	24	static

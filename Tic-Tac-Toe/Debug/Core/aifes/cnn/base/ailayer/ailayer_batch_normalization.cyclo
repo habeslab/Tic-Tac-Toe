@@ -1,0 +1,9 @@
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:45:12:ailayer_batch_norm	2
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:107:6:ailayer_batch_norm_forward	3
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:152:6:ailayer_batch_norm_backward	3
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:203:6:ailayer_batch_norm_calc_result_shape	1
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:209:10:ailayer_batch_norm_sizeof_paramem	9
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:241:6:ailayer_batch_norm_set_paramem	9
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:289:10:ailayer_batch_norm_sizeof_trainmem	6
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:320:6:ailayer_batch_norm_set_trainmem	12
+../Core/aifes/cnn/base/ailayer/ailayer_batch_normalization.c:393:6:ailayer_batch_norm_print_specs	1

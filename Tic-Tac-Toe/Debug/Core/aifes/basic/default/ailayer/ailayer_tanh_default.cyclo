@@ -1,0 +1,5 @@
+../Core/aifes/basic/default/ailayer/ailayer_tanh_default.c:25:12:ailayer_tanh_f32_default	1
+../Core/aifes/basic/default/ailayer/ailayer_tanh_default.c:43:12:ailayer_tanh_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_tanh_default.c:61:12:ailayer_tanh_q7_default	1
+../Core/aifes/basic/default/ailayer/ailayer_tanh_default.c:85:6:ailayer_tanh_calc_result_tensor_params_q31_default	1
+../Core/aifes/basic/default/ailayer/ailayer_tanh_default.c:94:6:ailayer_tanh_calc_result_tensor_params_q7_default	1

@@ -1,0 +1,4 @@
+../Core/aifes/basic/base/aimath/aimath_q7.c:67:6:aimath_q7_print_aitensor	32	static
+../Core/aifes/basic/base/aimath/aimath_q7.c:139:6:aimath_q7_print_aiscalar	24	static
+../Core/aifes/basic/base/aimath/aimath_q7.c:160:6:aimath_q7_calc_q_params_from_f32	48	static
+../Core/aifes/basic/base/aimath/aimath_q7.c:215:6:aimath_q7_quantize_tensor_from_f32	24	static
