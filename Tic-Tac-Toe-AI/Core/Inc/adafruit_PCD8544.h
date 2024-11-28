@@ -125,9 +125,16 @@ static const unsigned char ASCII[][5] = {
 };
 
 
-void draw_symbol_in_cell(int row, int col, char symbol);
 
 void draw_tictactoe_grid();
+
+void draw_symbol_in_cell(int row, int col, char symbol);
+
+void print_tictactoe_board(int8_t *board);
+
+
+
+
 
 void delay(int ms);
 

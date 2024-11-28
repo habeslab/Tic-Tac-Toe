@@ -28,6 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "usart.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -51,6 +52,9 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+
+void Serial_Print(UART_HandleTypeDef *huart, const char *message);
+uint8_t Serial_ReadChar(UART_HandleTypeDef *huart);
 
 /* USER CODE BEGIN EFP */
 

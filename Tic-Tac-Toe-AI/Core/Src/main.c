@@ -69,14 +69,33 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-
-// Funzione per inviare una stringa sulla seriale
+// Function to send a string over UART
+/**
+ * @brief Sends a string message through the specified UART interface.
+ *
+ * This function transmits a string message to the connected device via the UART
+ * peripheral using the HAL_UART_Transmit function.
+ *
+ * @param huart Pointer to the UART_HandleTypeDef structure that contains
+ *              the configuration information for the UART.
+ * @param message Pointer to the string that needs to be transmitted.
+ */
 void Serial_Print(UART_HandleTypeDef *huart, const char *message) {
     HAL_UART_Transmit(huart, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
 }
 
 
-// Funzione per leggere un singolo carattere dalla UART
+// Function to read a single character from UART
+/**
+ * @brief Reads a single character from the specified UART interface.
+ *
+ * This function waits for and receives a single character from the UART
+ * interface. It blocks until a character is received, using the HAL_UART_Receive function.
+ *
+ * @param huart Pointer to the UART_HandleTypeDef structure that contains
+ *              the configuration information for the UART.
+ * @return uint8_t The received character.
+ */
 uint8_t Serial_ReadChar(UART_HandleTypeDef *huart) {
     uint8_t ch;
     HAL_UART_Receive(huart, &ch, 1, HAL_MAX_DELAY);
@@ -84,6 +103,18 @@ uint8_t Serial_ReadChar(UART_HandleTypeDef *huart) {
 }
 
 
+/**
+ * @brief Checks if the Tic-Tac-Toe game board is full.
+ *
+ * This function iterates through the game board to check if all the cells
+ * are filled with either an 'X' or an 'O'. If any cell is unfilled, it returns false.
+ * If all cells are filled, it returns true.
+ *
+ * @param board An array representing the current state of the game board.
+ *              The board is a 1D array with 9 elements, where each element
+ *              represents a cell on the Tic-Tac-Toe grid.
+ * @return bool True if the board is full, false otherwise.
+ */
 bool isFull(int8_t board[9]) {
     for (int i = 0; i < 9; i++) {
         if (board[i] != O && board[i] != X) {
@@ -95,42 +126,32 @@ bool isFull(int8_t board[9]) {
 
 
 
-// Funzione per stampare la board del Tic Tac Toe sulla seriale
-void print_tictactoe_board(int8_t *board) {
-
-
-	uint8_t i, j;
-
-
-    for (i = 0; i < 3; i++) {
-
-
-        for (j = 0; j < 3; j++) {
-            if (board[i * 3 + j] == O) {
-
-            	draw_symbol_in_cell(i, j, 'O');
-
-            } else if (board[i * 3 + j] == X) {
-
-            	draw_symbol_in_cell(i,j,'X');
-
-            } else {
-
-                draw_symbol_in_cell(i,j,' ');
-            }
-        }
-
-    }
-}
-
-
-// Funzione per determinare il vincitore del Tic Tac Toe
+/**
+ * @brief Determines the winner of the Tic-Tac-Toe game.
+ *
+ * This function checks the game board to determine if there is a winner. It evaluates the
+ * rows, columns, and diagonals to see if all cells in any row, column, or diagonal contain
+ * the same symbol ('X' or 'O'). If so, it returns the winner symbol. If no winner is found,
+ * it returns 0 (indicating a draw or incomplete game).
+ *
+ * The game board is represented as a 1D array of 9 elements, with each element being one of
+ * the following:
+ * - `X` for player X's move
+ * - `O` for player O's move
+ * - 0 or a neutral value for an empty cell.
+ *
+ * @param board A pointer to the array representing the Tic-Tac-Toe game board.
+ *              The board is a 1D array of size 9, where each element represents a cell.
+ *              The values should be either `X`, `O`, or a neutral value (such as 0) for an empty cell.
+ *
+ * @return Returns `X` if player X wins, `O` if player O wins, or `0` if there is no winner (draw or game in progress).
+ */
 int8_t winner(int8_t *board) {
     int i, j;
     int x_count = 0;
     int o_count = 0;
 
-    // Controlla le righe
+    // Check rows for a winner
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (board[3 * i + j] == X) {
@@ -139,12 +160,12 @@ int8_t winner(int8_t *board) {
                 o_count++;
             }
         }
-        if (x_count == 3) return X;
-        else if (o_count == 3) return O;
-        else x_count = o_count = 0;
+        if (x_count == 3) return X;   // X wins if there are 3 X's in a row
+        else if (o_count == 3) return O; // O wins if there are 3 O's in a row
+        else x_count = o_count = 0;    // Reset counts for the next row
     }
 
-    // Controlla le colonne
+    // Check columns for a winner
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (board[3 * j + i] == X) {
@@ -153,12 +174,12 @@ int8_t winner(int8_t *board) {
                 o_count++;
             }
         }
-        if (x_count == 3) return X;
-        else if (o_count == 3) return O;
-        else x_count = o_count = 0;
+        if (x_count == 3) return X;  // X wins if there are 3 X's in a column
+        else if (o_count == 3) return O; // O wins if there are 3 O's in a column
+        else x_count = o_count = 0;  // Reset counts for the next column
     }
 
-    // Controlla le diagonali
+    // Check the first diagonal for a winner
     for (i = 0; i < 3; i++) {
         if (board[3 * i + i] == X) {
             x_count++;
@@ -166,10 +187,11 @@ int8_t winner(int8_t *board) {
             o_count++;
         }
     }
-    if (x_count == 3) return X;
-    else if (o_count == 3) return O;
-    else x_count = o_count = 0;
+    if (x_count == 3) return X;  // X wins if there are 3 X's on the diagonal
+    else if (o_count == 3) return O; // O wins if there are 3 O's on the diagonal
+    else x_count = o_count = 0;  // Reset counts for the next diagonal
 
+    // Check the second diagonal for a winner
     for (i = 0; i < 3; i++) {
         if (board[3 * i + 2 - i] == X) {
             x_count++;
@@ -177,150 +199,173 @@ int8_t winner(int8_t *board) {
             o_count++;
         }
     }
-    if (x_count == 3) return X;
-    else if (o_count == 3) return O;
+    if (x_count == 3) return X;  // X wins if there are 3 X's on the second diagonal
+    else if (o_count == 3) return O; // O wins if there are 3 O's on the second diagonal
 
-    return 0;
+    return 0; // No winner, game is either ongoing or a draw
 }
 
 
 
+/**
+ * @brief Implements the Tic-Tac-Toe game logic.
+ *
+ * This function implements the main game loop for a Tic-Tac-Toe game between a human player and an AI.
+ * The game is played through serial communication, where the user inputs their move in the form of coordinates
+ * (e.g., 'a1', 'b2', etc.), and the AI responds with its move.
+ * The game continues until either the user or the AI wins, or the board is full and the game is drawn.
+ *
+ * The game board is managed as a 1D array with 9 cells, where `O` is the human player's move and `X` is the AI's move.
+ * The user is asked to input their move via serial communication, and the game state is printed and updated on the display.
+ *
+ * @param huart A pointer to the UART_HandleTypeDef structure, which is used for serial communication.
+ */
 void tictactoe_game(UART_HandleTypeDef *huart) {
-
 
     uint8_t action;
     char user_input[2];
     uint8_t i;
     char buffer[100];
 
-    // Reset the board
+    // Initialize the game board (clear all cells)
     for (i = 0; i < 9; i++) {
-        board[i] = 0;
+        board[i] = 0;  // 0 represents an empty cell
     }
 
-    // TicTacToe agent
+    // Start the Tic-Tac-Toe game and notify the player
     Serial_Print(huart,"############ New Game ############\n");
 
+    // Print the current game board
     print_tictactoe_board(board);
 
+    // Update the LCD display
     updateDisplay();
 
-    delay(1000);
-    for (i = 0; i < 5; i++) {
-        user_input[0] = user_input[1] = 0;
+    delay(1000); // Wait for 1 second before starting the game
 
-        // Loop for reading valid input
+    // Main game loop (up to 5 turns, alternating between player and AI)
+    for (i = 0; i < 5; i++) {
+        user_input[0] = user_input[1] = 0; // Reset user input
+
+        // Loop to read valid user input (coordinates in the form of 'a1', 'b3', etc.)
         while (1) {
-        	Serial_Print(huart,"Your turn: Please enter the coordinates (e.g. a3)\n");
+            // Prompt user for input
+            Serial_Print(huart,"Your turn: Please enter the coordinates (e.g. a3)\n");
             Serial_Print(huart, "you want to place an O and press >enter<\n");
 
-            // Leggi il primo carattere
-            user_input[0] = Serial_ReadChar(huart); // Supponiamo di avere ancora bisogno di leggere dalla UART per l'input
-            delay(10);  // Aggiungi un piccolo ritardo per evitare problemi di sincronizzazione
-            Serial_Print(huart, "Ho letto il primo carattere!");
-            // Leggi il secondo carattere
+            // Read the first character (column)
+            user_input[0] = Serial_ReadChar(huart);
+            delay(10);  // Small delay to prevent synchronization issues
+            Serial_Print(huart, "I read the first character!");
+
+            // Read the second character (row)
             user_input[1] = Serial_ReadChar(huart);
-            delay(10);  // Aggiungi un piccolo ritardo per evitare problemi di sincronizzazione
-            Serial_Print(huart, "Ho letto il secondo carattere!");
-            // Calcola l'azione
+            delay(10);  // Small delay to prevent synchronization issues
+            Serial_Print(huart, "I read the second character!");
+
+            // Calculate the action (convert coordinates to board index)
             action = (user_input[0] - 97) + (user_input[1] - 48 - 1) * 3;
 
-            // Verifica se l'input è valido
+            // Validate user input: check for correct coordinates and empty cell
             if ((user_input[0] < 97 || user_input[0] > 99 || user_input[1] < 49 || user_input[1] > 51)) {
                 Serial_Print(huart,"Wrong input. The coordinates have to be\n");
                 Serial_Print(huart,"one of {a1, a2, a3, b1, b2, b3, c1, c2, c3}.\n");
-                user_input[0] = user_input[1] = 0;
+                user_input[0] = user_input[1] = 0; // Reset input and prompt again
                 continue;
             } else if (board[action] != 0) {
                 Serial_Print(huart,"Wrong input. The field is already occupied.\n");
-                user_input[0] = user_input[1] = 0;
+                user_input[0] = user_input[1] = 0; // Reset input and prompt again
                 continue;
             }
 
-            break;  // Esce dal ciclo solo se l'input è valido
+            break;  // Exit the loop once valid input is provided
         }
 
-        // Update the board with user's action
+        // Update the board with the user's move (O)
         board[action] = O;
 
-        snprintf(buffer, 100, "Scelta fatta dall'Utente: %c, %c\n", user_input[0], user_input[1]);
-        Serial_Print(huart,buffer);
+        // Print user's move
+        snprintf(buffer, 100, "User's move: %c, %c\n", user_input[0], user_input[1]);
+        Serial_Print(huart, buffer);
 
+        // Print the updated game board
         print_tictactoe_board(board);
 
+        // Update the LCD display
         updateDisplay();
 
-        delay(1000);
+        delay(1000); // Wait for 1 second before continuing
 
+        // Check if the user has won the game
         if (winner(board) == O) {
             Serial_Print(huart,"******* Congratulations: You won the game! *******\n");
             Serial_Print(huart, "This should be impossible in theory.\n");
             break;
         }
 
-        // Memorizzo il tempo di esecuzione del codice
+        // Measure the time taken for the AI to make its move
         double time_spent = 0.0;
         clock_t begin = clock();
 
+        // Let the AI make its move
         action = run_ai_agent(board);
 
         clock_t end = clock();
-
-        // Calcola il tempo trascorso
         time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-        // Update the board with AI's action
+        // Update the board with AI's move (X)
         board[action] = X;
 
+        // Print the time taken for AI's move
         snprintf(buffer, 100, "The AI took %f seconds to think about the turn.\n", time_spent);
-        Serial_Print(huart,buffer);
-        snprintf(buffer, 100, "AIs turn was %c%d\n", (char)(action % 3 + 97), (int)(action / 3 + 1));
         Serial_Print(huart, buffer);
 
+        // Print AI's move
+        snprintf(buffer, 100, "AI's move was %c%d\n", (char)(action % 3 + 97), (int)(action / 3 + 1));
+        Serial_Print(huart, buffer);
+
+        // Print the updated game board
         print_tictactoe_board(board);
 
+        // Update the LCD display
         updateDisplay();
 
+        // Check if the AI has won the game
         if (winner(board) == X) {
-
             Serial_Print(huart,"******* You lost the game! *******\n");
 
-            delay(2000);
+            delay(2000); // Wait for 2 seconds
 
+            // Clear the LCD display and show the "You Lost" message
             clearDisplay(false);
-
             LCD_Print("You Lost the Game!", 0, 7);
-
             clearDisplay(false);
 
-            delay(20000);
+            delay(20000); // Wait for 20 seconds
 
-
+            // Reset the game board and display
             draw_tictactoe_grid();
-
             updateDisplay();
 
-            break;
+            break;  // End the game
         }
-        /**
-         * Se la griglia è piena allora il gioco è fermo
-         * Reset Game !
-         */
-        if(isFull(board)){
-            Serial_Print(huart, "\n La griglia è piena! Riavvio il gioco.\n");
+
+        // Check if the board is full (game ends in a draw)
+        if (isFull(board)) {
+            Serial_Print(huart, "\n The board is full! Restarting the game.\n");
 
             clearDisplay(false);
-
             delay(2000);
 
+            // Reset the board and redraw the grid
             draw_tictactoe_grid();
-
             delay(2000);
 
             updateDisplay();
         }
     }
 }
+
 
 
 /* USER CODE END 0 */
@@ -370,21 +415,18 @@ int main(void)
 
   LCD_Print("Welcome in Tic-Tac-Toe Game", 1, 8);
 
-  delay(20000);
+  delay(5000);
 
 
   clearDisplay(false);
 
-  delay(10000);
-  //HAL_Delay(1000);
+  delay(5000);
 
   draw_tictactoe_grid();
 
   updateDisplay();
 
-  delay(20000);
-
-  Serial_Print(&huart2,"\n Ho inizializzato lo schermo LCD \n");
+  delay(5000);
 
   init_ai_agent(&huart2);
   /* USER CODE END 2 */
