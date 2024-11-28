@@ -1,0 +1,2 @@
+../Core/Src/neural_network.c:157:6:init_ai_agent	128	static
+../Core/Src/neural_network.c:226:9:run_ai_agent	56	static

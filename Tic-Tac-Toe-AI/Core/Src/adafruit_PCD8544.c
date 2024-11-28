@@ -1,0 +1,486 @@
+#include "adafruit_PCD8544.h"
+#include <stdbool.h>
+#include "spi.h"
+
+
+#define GRID_X_OFFSET 10
+#define GRID_Y_OFFSET 10
+#define CELL_WIDTH 10
+#define CELL_HEIGHT 10
+#define GRID_WIDTH 30 // 3 celle * 20px + 2 separatori
+#define GRID_HEIGHT 30 // 3 celle * 20px + 2 separatori
+
+void delay(int ms);
+
+unsigned char displayMap_5110[LCD_WIDTH * LCD_HEIGHT / 8] = {
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,0)->(11,7)~ These 12 bytes cover an 8x12 block in the left corner of the display
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,0)->(23,7)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE0, // (24,0)->(35,7)
+  0xF0, 0xF8, 0xFC, 0xFC, 0xFE, 0xFE, 0xFE, 0xFE, 0x1E, 0x0E, 0x02, 0x00, // (36,0)->(47,7)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (48,0)->(59,7)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,0)->(71,7)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,0)->(83,7)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,8)->(11,15)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,8)->(23,15)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, // (24,8)->(35,15)
+  0x0F, 0x1F, 0x3F, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, 0xFC, 0xF8, // (36,8)->(47,15)
+  0xF8, 0xF0, 0xF8, 0xFE, 0xFE, 0xFC, 0xF8, 0xE0, 0x00, 0x00, 0x00, 0x00, // (48,8)->(59,15)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,8)->(71,15)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,8)->(83,15)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,16)->(11,23)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,16)->(23,23)
+  0x00, 0x00, 0xF8, 0xFC, 0xFE, 0xFE, 0xFF, 0xFF, 0xF3, 0xE0, 0xE0, 0xC0, // (24,16)->(35,23)
+  0xC0, 0xC0, 0xE0, 0xE0, 0xF1, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // (36,16)->(47,23)
+  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x3E, 0x00, 0x00, 0x00, // (48,16)->(59,23)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,16)->(71,23)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,16)->(83,23)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,24)->(11,31)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,24)->(23,31)
+  0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // (24,24)->(35,31)
+  0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // (36,24)->(47,31)
+  0xFF, 0xFF, 0xFF, 0x7F, 0x3F, 0x1F, 0x07, 0x01, 0x00, 0x00, 0x00, 0x00, // (48,24)->(59,31)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,24)->(71,31)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,24)->(83,31)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,32)->(11,39)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,32)->(23,39)
+  0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0x3F, 0x1F, // (24,32)->(35,39)
+  0x0F, 0x0F, 0x0F, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x03, 0x03, // (36,32)->(47,39)
+  0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (48,32)->(59,39)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,32)->(71,39)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,32)->(83,39)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (0,40)->(11,47)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (12,40)->(23,47)
+  0x00, 0x00, 0x3F, 0x1F, 0x0F, 0x07, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, // (24,40)->(35,47)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (36,40)->(47,47)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (48,40)->(59,47)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (60,40)->(71,47)
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (72,40)->(83,47) !!! The bottom right pixel!
+
+};
+
+
+// Funzione per disegnare la griglia del tris con lettere e numeri
+void draw_tictactoe_grid() {
+    int i, j;
+
+    // Disegna le lettere sopra la griglia
+    setChar('a', GRID_X_OFFSET + CELL_WIDTH / 2, GRID_Y_OFFSET - CELL_HEIGHT, true);
+    setChar('b', GRID_X_OFFSET + CELL_WIDTH * 3 / 2, GRID_Y_OFFSET - CELL_HEIGHT, true);
+    setChar('c', GRID_X_OFFSET + CELL_WIDTH * 5 / 2, GRID_Y_OFFSET - CELL_HEIGHT, true);
+
+    // Disegna i numeri a sinistra della griglia
+    setChar('1', GRID_X_OFFSET - CELL_WIDTH, GRID_Y_OFFSET + CELL_HEIGHT / 2, true);
+    setChar('2', GRID_X_OFFSET - CELL_WIDTH, GRID_Y_OFFSET + CELL_HEIGHT * 3 / 2, true);
+    setChar('3', GRID_X_OFFSET - CELL_WIDTH, GRID_Y_OFFSET + CELL_HEIGHT * 5 / 2, true);
+
+    // Disegna le linee orizzontali
+    for (i = 0; i <= 3; i++) {
+        for (j = 0; j < GRID_WIDTH; j++) {
+            setPixel1(GRID_X_OFFSET + j, GRID_Y_OFFSET + i * CELL_HEIGHT, true);
+        }
+    }
+
+    // Disegna le linee verticali
+    for (i = 0; i <= 3; i++) {
+        for (j = 0; j < GRID_HEIGHT; j++) {
+            setPixel1(GRID_X_OFFSET + i * CELL_WIDTH, GRID_Y_OFFSET + j, true);
+        }
+    }
+}
+
+
+
+// Funzione per disegnare un simbolo ('X' o 'O') in una cella
+void draw_symbol_in_cell(int row, int col, char symbol){
+
+    int i, j;
+    int base_x = GRID_X_OFFSET + col * CELL_WIDTH;
+    int base_y = GRID_Y_OFFSET + row * CELL_HEIGHT;
+
+    if (symbol == 'X') {
+        // Disegna la X: due linee incrociate
+        for (i = 0; i < CELL_WIDTH; i++) {
+            setPixel1(base_x + i, base_y + i, true);  // Diagonale 1
+            setPixel1(base_x + i, base_y + (CELL_HEIGHT - 1 - i), true);  // Diagonale 2
+        }
+    } else if (symbol == 'O') {
+        // Disegna il cerchio O
+        for (i = 0; i < CELL_WIDTH; i++) {
+            for (j = 0; j < CELL_HEIGHT; j++) {
+                // Calcola se il pixel si trova all'interno di un cerchio
+                if ((i - CELL_WIDTH / 2) * (i - CELL_WIDTH / 2) + (j - CELL_HEIGHT / 2) * (j - CELL_HEIGHT / 2) <= (CELL_WIDTH / 2) * (CELL_HEIGHT / 2)) {
+                    setPixel1(base_x + i, base_y + j, true);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+void spi_write(unsigned char c) {
+    // Controlla se ci sono errori prima della trasmissione
+    if (__HAL_SPI_GET_FLAG(&hspi2, SPI_FLAG_OVR)) {
+        __HAL_SPI_CLEAR_OVRFLAG(&hspi2);
+    }
+
+    // Usa la funzione HAL per trasmettere un byte
+    HAL_StatusTypeDef status = HAL_SPI_Transmit(&hspi2, &c, 1, HAL_MAX_DELAY);
+
+    // Controlla lo stato della trasmissione
+    if (status != HAL_OK) {
+        // Gestione dell'errore
+        Error_Handler();
+    }
+
+    // Verifica lo stato del bus SPI
+    while (__HAL_SPI_GET_FLAG(&hspi2, SPI_FLAG_BSY)) {
+        // Attesa finché SPI è occupato
+    }
+}
+
+
+
+void LCDcommand(unsigned char data) {
+    CS0;
+    LCD_COMMAND;
+    spi_write(data);
+    CS1;
+}
+
+void LCDdata(unsigned char data) {
+    CS0;
+    LCD_DATA;
+    spi_write(data);
+    CS1;
+}
+
+// Nuova funzione per scrivere una stringa sul display LCD
+void LCD_Print(const char *message, int x, int y) {
+    setStr((char *)message, x, y, BLACK); // Usa la funzione esistente per scrivere una stringa sul display
+    updateDisplay(); // Aggiorna il display per mostrare la nuova stringa
+}
+
+
+// This function sets a pixel on displayMap to your preferred
+// color. 1=Black, 0= white.
+void setPixel1(int x, int y, bool bw)
+{
+  // First, double check that the coordinate is in range.
+  if ((x >= 0) && (x < LCD_WIDTH) && (y >= 0) && (y < LCD_HEIGHT))
+  {
+    int shift = y % 8;
+
+    if (bw) // If black, set the bit.
+      displayMap_5110[x + (y/8)*LCD_WIDTH] |= 1<<shift;
+    else   // If white clear the bit.
+      displayMap_5110[x + (y/8)*LCD_WIDTH] &= ~(1<<shift);
+  }
+}
+
+// Because I keep forgetting to put bw variable in when setting...
+void setPixel(int x, int y)
+{
+  setPixel1(x, y, BLACK); // Call setPixel with bw set to Black
+}
+
+void clearPixel(int x, int y)
+{
+  setPixel1(x, y, WHITE); // call setPixel with bw set to white
+}
+
+// setLine draws a line from x0,y0 to x1,y1 with the set color.
+// This function was grabbed from the SparkFun ColorLCDShield
+// library.
+void setLine(int x0, int y0, int x1, int y1, bool bw)
+{
+  int dy = y1 - y0; // Difference between y0 and y1
+  int dx = x1 - x0; // Difference between x0 and x1
+  int stepx, stepy;
+
+  if (dy < 0)
+  {
+    dy = -dy;
+    stepy = -1;
+  }
+  else
+    stepy = 1;
+
+  if (dx < 0)
+  {
+    dx = -dx;
+    stepx = -1;
+  }
+  else
+    stepx = 1;
+
+  dy <<= 1; // dy is now 2*dy
+  dx <<= 1; // dx is now 2*dx
+  setPixel1(x0, y0, bw); // Draw the first pixel.
+
+  if (dx > dy)
+  {
+    int fraction = dy - (dx >> 1);
+    while (x0 != x1)
+    {
+      if (fraction >= 0)
+      {
+        y0 += stepy;
+        fraction -= dx;
+      }
+      x0 += stepx;
+      fraction += dy;
+      setPixel1(x0, y0, bw);
+    }
+  }
+  else
+  {
+    int fraction = dx - (dy >> 1);
+    while (y0 != y1)
+    {
+      if (fraction >= 0)
+      {
+        x0 += stepx;
+        fraction -= dy;
+      }
+      y0 += stepy;
+      fraction += dx;
+      setPixel1(x0, y0, bw);
+    }
+  }
+}
+
+// setRect will draw a rectangle from x0,y0 top-left corner to
+// a x1,y1 bottom-right corner. Can be filled with the fill
+// parameter, and colored with bw.
+// This function was grabbed from the SparkFun ColorLCDShield
+// library.
+void setRect(int x0, int y0, int x1, int y1, bool fill, bool bw)
+{
+  // check if the rectangle is to be filled
+  if (fill == 1)
+  {
+    int xDiff;
+
+    if(x0 > x1)
+      xDiff = x0 - x1; //Find the difference between the x vars
+    else
+      xDiff = x1 - x0;
+
+    while(xDiff > 0)
+    {
+      setLine(x0, y0, x0, y1, bw);
+
+      if(x0 > x1)
+        x0--;
+      else
+        x0++;
+
+      xDiff--;
+    }
+  }
+  else
+  {
+    // best way to draw an unfilled rectangle is to draw four lines
+    setLine(x0, y0, x1, y0, bw);
+    setLine(x0, y1, x1, y1, bw);
+    setLine(x0, y0, x0, y1, bw);
+    setLine(x1, y0, x1, y1, bw);
+  }
+}
+
+// setCircle draws a circle centered around x0,y0 with a defined
+// radius. The circle can be black or white. And have a line
+// thickness ranging from 1 to the radius of the circle.
+// This function was grabbed from the SparkFun ColorLCDShield
+// library.
+void setCircle (int x0, int y0, int radius, bool bw, int lineThickness)
+{
+  for(int r = 0; r < lineThickness; r++)
+  {
+    int f = 1 - radius;
+    int ddF_x = 0;
+    int ddF_y = -2 * radius;
+    int x = 0;
+    int y = radius;
+
+    setPixel1(x0, y0 + radius, bw);
+    setPixel1(x0, y0 - radius, bw);
+    setPixel1(x0 + radius, y0, bw);
+    setPixel1(x0 - radius, y0, bw);
+
+    while(x < y)
+    {
+      if(f >= 0)
+      {
+        y--;
+        ddF_y += 2;
+        f += ddF_y;
+      }
+      x++;
+      ddF_x += 2;
+      f += ddF_x + 1;
+
+      setPixel1(x0 + x, y0 + y, bw);
+      setPixel1(x0 - x, y0 + y, bw);
+      setPixel1(x0 + x, y0 - y, bw);
+      setPixel1(x0 - x, y0 - y, bw);
+      setPixel1(x0 + y, y0 + x, bw);
+      setPixel1(x0 - y, y0 + x, bw);
+      setPixel1(x0 + y, y0 - x, bw);
+      setPixel1(x0 - y, y0 - x, bw);
+    }
+    radius--;
+  }
+}
+
+// This function will draw a char (defined in the ASCII table
+// near the beginning of this sketch) at a defined x and y).
+// The color can be either black (1) or white (0).
+void setChar(char character, int x, int y, bool bw)
+{
+  int column; // temp byte to store character's column bitmap
+  for (int i=0; i<5; i++) // 5 columns (x) per character
+  {
+    column = ASCII[character - 0x20][i];
+    for (int j=0; j<8; j++) // 8 rows (y) per character
+    {
+      if (column & (0x01 << j)) // test bits to set pixels
+        setPixel1(x+i, y+j, bw);
+      else
+        setPixel1(x+i, y+j, !bw);
+    }
+  }
+}
+
+// setStr draws a string of characters, calling setChar with
+// progressive coordinates until it's done.
+// This function was grabbed from the SparkFun ColorLCDShield
+// library.
+void setStr(char * dString, int x, int y, bool bw)
+{
+  while (*dString != 0x00) // loop until null terminator
+  {
+    setChar(*dString++, x, y, bw);
+    x+=5;
+    for (int i=y; i<y+8; i++)
+    {
+      setPixel1(x, i, !bw);
+    }
+    x++;
+    if (x > (LCD_WIDTH - 5)) // Enables wrap around
+    {
+      x = 0;
+      y += 8;
+    }
+  }
+}
+
+// This function will draw an array over the screen. (For now) the
+// array must be the same size as the screen, covering the entirety
+// of the display.
+// Also, the array must reside in FLASH and declared with PROGMEM.
+void SetBitMap(const char * bitArray)
+{
+  for (int i=0; i<(LCD_WIDTH * LCD_HEIGHT / 8); i++)
+  {
+    char c = bitArray[i];
+    displayMap_5110[i] = c;
+  }
+}
+
+// This function clears the entire display either white (0) or
+// black (1).
+// The screen won't actually clear until you call updateDisplay()!
+void clearDisplay(bool bw)
+{
+  for (int i=0; i<(LCD_WIDTH * LCD_HEIGHT / 8); i++)
+  {
+    if (bw)
+      displayMap_5110[i] = 0xFF;
+    else
+      displayMap_5110[i] = 0;
+  }
+}
+
+// Helpful function to directly command the LCD to go to a
+// specific x,y coordinate.
+void gotoXY(int x, int y)
+{
+  LCDcommand(0x80 | x);  // Column.
+  LCDcommand( 0x40 | y);  // Row.  ?
+}
+
+// This will actually draw on the display, whatever is currently
+// in the displayMap array.
+void updateDisplay(void)
+{
+  gotoXY(0, 0);
+  for (int i=0; i < (LCD_WIDTH * LCD_HEIGHT / 8); i++)
+  {
+    LCDdata( displayMap_5110[i]);
+  }
+}
+
+// Set contrast can set the LCD Vop to a value between 0 and 127.
+// 40-60 is usually a pretty good range.
+void setContrast(int contrast)
+{
+  LCDcommand(0x21); //Tell LCD that extended commands follow
+  LCDcommand( 0x80 | contrast); //Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark
+  LCDcommand(0x20); //Set display mode
+}
+
+/* There are two ways to do this. Either through direct commands
+to the display, or by swapping each bit in the displayMap array.
+We'll leave both methods here, comment one or the other out if
+you please. */
+void invertDisplay(void)
+{
+  /* Direct LCD Command option
+  LCDWrite(LCD_COMMAND, 0x20); //Tell LCD that extended commands follow
+  LCDWrite(LCD_COMMAND, 0x08 | 0x05); //Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark
+  LCDWrite(LCD_COMMAND, 0x20); //Set display mode  */
+
+  /* Indirect, swap bits in displayMap option: */
+  for (int i=0; i < (LCD_WIDTH * LCD_HEIGHT / 8); i++)
+  {
+    displayMap_5110[i] = ~displayMap_5110[i] & 0xFF;
+  }
+  updateDisplay();
+}
+
+void lcdBegin(void) {
+    RST0;
+    HAL_Delay(100);
+    RST1;
+    CS0;
+    LCDcommand(0x21); // Tell LCD extended commands follow
+    HAL_Delay(100);
+    LCDcommand(0xB0); // Set LCD Vop (Contrast)
+    delay(10);
+    LCDcommand(0x04); // Set Temp coefficient
+    delay(10);
+    LCDcommand(0x14); // LCD bias mode 1:48 (try 0x13)
+    delay(10);
+    // We must send 0x20 before modifying the display control mode
+    LCDcommand(0x20);
+    delay(10);
+    LCDcommand(0x0C); // Set display control, normal mode.
+    delay(10);
+}
+
+
+void delay(int ms) {
+    SysTick->LOAD = 16000 - 1; // assuming 16 MHz clock
+    SysTick->VAL = 0;
+    SysTick->CTRL = 0x5;
+    for (int i = 0; i < ms; i++) {
+        while (!(SysTick->CTRL & 0x10000)) {}
+    }
+    SysTick->CTRL = 0;
+}
+
