@@ -1,9 +1,8 @@
-../Core/Src/main.c:74:6:Serial_Print	16	static
-../Core/Src/main.c:80:9:Serial_ReadChar	24	static
-../Core/Src/main.c:87:6:isFull	24	static
-../Core/Src/main.c:99:6:print_tictactoe_board	24	static
-../Core/Src/main.c:128:8:winner	32	static
-../Core/Src/main.c:188:6:tictactoe_game	152	static
-../Core/Src/main.c:332:5:main	8	static
-../Core/Src/main.c:407:6:SystemClock_Config	88	static
-../Core/Src/main.c:457:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:83:6:Serial_Print	16	static
+../Core/Src/main.c:99:9:Serial_ReadChar	24	static
+../Core/Src/main.c:118:6:isFull	24	static
+../Core/Src/main.c:149:8:winner	32	static
+../Core/Src/main.c:223:6:tictactoe_game	152	static
+../Core/Src/main.c:377:5:main	8	static
+../Core/Src/main.c:449:6:SystemClock_Config	88	static
+../Core/Src/main.c:499:6:Error_Handler	4	static,ignoring_inline_asm

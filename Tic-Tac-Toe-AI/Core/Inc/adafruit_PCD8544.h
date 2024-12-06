@@ -146,6 +146,10 @@ void setCircle (int x0, int y0, int radius, bool bw, int lineThickness);
 
 void setStr(char * dString, int x, int y, bool bw);
 
+void setChar(char character, int x, int y, bool bw);
+
+void setPixel1(int x, int y, bool bw);
+
 void SetBitMap(const char * bitArray);
 
 void clearDisplay(bool bw);

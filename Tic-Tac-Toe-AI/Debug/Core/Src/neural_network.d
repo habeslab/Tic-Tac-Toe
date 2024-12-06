@@ -107,7 +107,8 @@ Core/Src/neural_network.o: ../Core/Src/neural_network.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/pgm_compat.h ../Core/Inc/adafruit_PCD8544.h
+ ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/pgm_compat.h \
+ ../Core/Inc/adafruit_PCD8544.h
 ../Core/aifes/aifes.h:
 ../Core/aifes/aifes_config.h:
 ../Core/aifes/aifes_basic.h:
@@ -220,5 +221,7 @@ Core/Src/neural_network.o: ../Core/Src/neural_network.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+../Core/Inc/usart.h:
+../Core/Inc/main.h:
 ../Core/Inc/pgm_compat.h:
 ../Core/Inc/adafruit_PCD8544.h:

@@ -214,7 +214,7 @@ void init_ai_agent(UART_HandleTypeDef *huart) {
 
     // Allocate memory for intermediate results of the inference
     uint32_t inference_memory_size = aialgo_sizeof_inference_memory(&model);
-    snprintf(buffer, 100, "Model needs: %d bytes for inference\n", inference_memory_size);
+    snprintf(buffer, 100, "Model needs: %ld bytes for inference\n", inference_memory_size);
     Serial_Print(huart, buffer);
 
     void *inference_memory = malloc(inference_memory_size);

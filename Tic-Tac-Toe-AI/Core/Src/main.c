@@ -256,12 +256,12 @@ void tictactoe_game(UART_HandleTypeDef *huart) {
             // Read the first character (column)
             user_input[0] = Serial_ReadChar(huart);
             delay(10);  // Small delay to prevent synchronization issues
-            Serial_Print(huart, "I read the first character!");
+            //Serial_Print(huart, "I read the first character!");
 
             // Read the second character (row)
             user_input[1] = Serial_ReadChar(huart);
             delay(10);  // Small delay to prevent synchronization issues
-            Serial_Print(huart, "I read the second character!");
+            //Serial_Print(huart, "I read the second character!");
 
             // Calculate the action (convert coordinates to board index)
             action = (user_input[0] - 97) + (user_input[1] - 48 - 1) * 3;

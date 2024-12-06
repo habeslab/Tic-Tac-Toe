@@ -22,7 +22,8 @@
 
 #define GRID_WIDTH 30            ///< Total width of the grid (in pixels), considering 3 cells in width + 2 separators.
 #define GRID_HEIGHT 30           ///< Total height of the grid (in pixels), considering 3 cells in height + 2 separators.
-
+#define  O   -64  // (value=-64; shift=6; zero_point=0) -> -1.0f
+#define  X    64  // (value=64; shift=6; zero_point=0)  ->  1.0f
 
 void delay(int ms);
 
