@@ -221,11 +221,6 @@ This project supports **three modes of interaction** with the Tic-Tac-Toe game:
 
 ---
 
-Perfetto, possiamo creare una sezione **Example Output** completa con le tre modalità, lasciando spazio per le immagini che vuoi inserire per le modalità 2 e 3.
-Ecco una versione pronta da inserire nel README.md:
-
----
-
 ## 🧾 Example Output
 
 ### 1️⃣ Serial Connection Only
